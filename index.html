@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthFlow - Secure Authentication</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+    <header class="header">
+        <div class="header-content">
+            <h1 class="app-title">AuthFlow</h1>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Welcome</h2>
+                <p class="subtitle">Facebook Login Authentication</p>
+            </div>
+            
+            <!-- Login/Logout buttons container -->
+            <div id="auth-buttons" class="auth-section">
+                <button id="login-btn" class="btn btn-primary">
+                    <span class="btn-icon">f</span>
+                    <span class="btn-text">Login with Facebook</span>
+                </button>
+                <!-- Helper text is only visible in the logged-out state -->
+                <p id="helper-text" class="helper-text">You'll be redirected to Facebook to continue</p>
+                <button id="logout-btn" class="btn btn-secondary" style="display: none;">Log out</button>
+            </div>
+            
+            <!-- User profile information container (hidden initially) -->
+            <div id="user-info" class="user-section" style="display: none;">
+                <div class="profile-card">
+                    <div class="profile-picture-container">
+                        <div class="profile-picture-wrapper">
+                            <img id="profile-picture" src="" alt="Profile Picture" class="profile-picture">
+                        </div>
+                    </div>
+                    <div class="user-details">
+                        <h2 id="user-name" class="user-name"></h2>
+                        <p class="user-email" id="user-email"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Status message container -->
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </div>
+    
+    <!-- Theme toggle script (minimal JS only) -->
+    <script>
+        (function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            
+            // Load saved theme or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.className = 'theme-' + savedTheme;
+            updateThemeIcon(savedTheme);
+            
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = body.classList.contains('theme-dark') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.classList.remove('theme-' + currentTheme);
+                body.classList.add('theme-' + newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+            
+            function updateThemeIcon(theme) {
+                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        })();
+    </script>
+    
+    <!-- App script MUST load before the Facebook SDK so fbAsyncInit is defined first -->
+    <script src="script.js"></script>
+    <!-- Facebook JavaScript SDK -->
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+</html>
+

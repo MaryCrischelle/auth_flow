@@ -1,0 +1,588 @@
+/* ============================================
+   CSS Variables for Theme Support
+   ============================================ */
+:root {
+    /* Light Theme Colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-gradient-start: #e0e7ff;
+    --bg-gradient-end: #c7d2fe;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-tertiary: #94a3b8;
+    --accent-primary: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-light: #e0e7ff;
+    --border-color: #e2e8f0;
+    --shadow-sm: rgba(15, 23, 42, 0.08);
+    --shadow-md: rgba(15, 23, 42, 0.12);
+    --shadow-lg: rgba(15, 23, 42, 0.16);
+    --shadow-xl: rgba(15, 23, 42, 0.24);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --profile-ring: #6366f1;
+}
+
+.theme-dark {
+    /* Dark Theme Colors */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-gradient-start: #1e1b4b;
+    --bg-gradient-end: #312e81;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --accent-primary: #818cf8;
+    --accent-hover: #a5b4fc;
+    --accent-light: #312e81;
+    --border-color: #334155;
+    --shadow-sm: rgba(0, 0, 0, 0.3);
+    --shadow-md: rgba(0, 0, 0, 0.4);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+    --shadow-xl: rgba(0, 0, 0, 0.6);
+    --card-bg: rgba(30, 41, 59, 0.85);
+    --profile-ring: #818cf8;
+}
+
+/* ============================================
+   Reset and Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    padding: 0;
+    position: relative;
+}
+
+/* Animated background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.theme-dark body::before {
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(129, 140, 248, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(167, 139, 250, 0.15) 0%, transparent 50%);
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.header {
+    position: relative;
+    z-index: 10;
+    padding: 24px 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.theme-dark .header {
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.header-content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 20px;
+    box-shadow: 0 2px 8px var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-md);
+    border-color: var(--accent-primary);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   Container and Card
+   ============================================ */
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 60px var(--shadow-lg),
+        0 0 0 1px var(--border-color);
+    padding: 48px 40px;
+    text-align: center;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-header {
+    margin-bottom: 40px;
+}
+
+.card-title {
+    color: var(--text-primary);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    transition: color 0.3s ease;
+}
+
+/* ============================================
+   Authentication Section
+   ============================================ */
+.auth-section {
+    margin: 32px 0 24px;
+}
+
+.helper-text {
+    color: var(--text-tertiary);
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 16px;
+    line-height: 1.6;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn {
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.2px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-hover) 100%);
+    color: white;
+    box-shadow: 
+        0 4px 12px rgba(99, 102, 241, 0.3),
+        0 0 0 0 rgba(99, 102, 241, 0.4);
+    position: relative;
+    z-index: 1;
+}
+
+.theme-dark .btn-primary {
+    box-shadow: 
+        0 4px 12px rgba(129, 140, 248, 0.4),
+        0 0 0 0 rgba(129, 140, 248, 0.5);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(99, 102, 241, 0.4),
+        0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.theme-dark .btn-primary:hover:not(:disabled) {
+    box-shadow: 
+        0 8px 24px rgba(129, 140, 248, 0.5),
+        0 0 0 4px rgba(129, 140, 248, 0.15);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 12px rgba(99, 102, 241, 0.3),
+        0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.btn-icon {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    flex-shrink: 0;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-text {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-md);
+    color: var(--accent-primary);
+}
+
+.theme-dark .btn-secondary:hover {
+    background: var(--accent-light);
+    color: var(--accent-primary);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   User Profile Section
+   ============================================ */
+.user-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.profile-picture-container {
+    margin-bottom: 8px;
+}
+
+.profile-picture-wrapper {
+    position: relative;
+    display: inline-block;
+    animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.profile-picture-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--profile-ring), var(--accent-hover));
+    opacity: 0.3;
+    z-index: -1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--profile-ring);
+    object-fit: cover;
+    box-shadow: 
+        0 8px 24px var(--shadow-md),
+        0 0 0 4px var(--card-bg);
+    background: var(--bg-secondary);
+    transition: all 0.3s ease;
+}
+
+.profile-picture:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 12px 32px var(--shadow-lg),
+        0 0 0 4px var(--card-bg);
+}
+
+.user-details {
+    width: 100%;
+}
+
+.user-name {
+    color: var(--text-primary);
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.user-email {
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+/* ============================================
+   Status Message
+   ============================================ */
+.status-message {
+    margin-top: 24px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    display: none;
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.status-message.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    border-color: rgba(34, 197, 94, 0.2);
+    display: block;
+}
+
+.theme-dark .status-message.success {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.status-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border-color: rgba(239, 68, 68, 0.2);
+    display: block;
+}
+
+.theme-dark .status-message.error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 600px) {
+    .header {
+        padding: 20px 16px;
+    }
+    
+    .app-title {
+        font-size: 20px;
+    }
+    
+    .container {
+        padding: 24px 16px;
+    }
+    
+    .card {
+        padding: 36px 28px;
+        border-radius: 20px;
+    }
+    
+    .card-title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .user-name {
+        font-size: 22px;
+    }
+    
+    .user-email {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 32px 24px;
+    }
+    
+    .card-title {
+        font-size: 24px;
+    }
+}
+
+/* ============================================
+   Smooth Transitions for Theme Changes
+   ============================================ */
+* {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+/* Override for elements that should transition instantly */
+.btn, .theme-toggle, .profile-picture {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
