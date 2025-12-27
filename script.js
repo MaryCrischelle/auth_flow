@@ -94,6 +94,7 @@ loginBtn.addEventListener('click', function () {
   }
 });
 
+
 // Logout - clears app session and resets UI
 // Note: This only logs out from the app, not from Facebook globally
 // User can log in again and will see account selection dialog due to reauthenticate
@@ -160,4 +161,5 @@ function fetchUserInfo() {
     console.error('Error in fetchUserInfo:', error);
   }
 }
+
 
