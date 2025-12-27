@@ -150,7 +150,7 @@ This project is for educational purposes.
 
 - **Colors**: Modify CSS variables in `style.css` to change the color scheme
 - **Animations**: Adjust animation timings in the `@keyframes` rules
-- **Layout**: Modify the HTML structure in `index.html` and corresponding CSS
+- **Layout**: Modify the HTML structure in `index.html` and the corresponding CSS
 
 ### Browser Support
 
@@ -175,4 +175,5 @@ This project is for educational purposes.
 ## JavaScript Logic / Data Processing - Angela Eunice Rimando
 ## UI & CSS Designer - Reyne Careyne Doria
 ## GitHub & Documentation Manager - Mary Crischelle Bautista
+
 
