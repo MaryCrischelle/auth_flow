@@ -175,3 +175,4 @@ This project is for educational purposes.
 ## JavaScript Logic / Data Processing - Angela Eunice Rimando
 ## UI & CSS Designer - Reyne Careyne Doria
 ## GitHub & Documentation Manager - Mary Crischelle Bautista
+
