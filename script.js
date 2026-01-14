@@ -62,8 +62,8 @@ window.fbAsyncInit = function () {
 // even if user is already logged into Facebook, allowing account switching
 loginBtn.addEventListener('click', function () {
   const btnText = loginBtn.querySelector('.btn-text');
-  const originalText = btnText.textContent;
-  
+  const originalText = btnText.textContent; 
+   
   // Show loading state
   loginBtn.disabled = true;
   btnText.textContent = 'Connecting...';
@@ -90,7 +90,7 @@ loginBtn.addEventListener('click', function () {
     loginBtn.disabled = false;
     btnText.textContent = originalText;
     // Silently handle any SDK initialization errors
-    console.warn('Login attempt failed:', error);
+    console.warn('Login attempt failed:', error); 
   }
 });
 
@@ -125,7 +125,7 @@ logoutBtn.addEventListener('click', function () {
     document.getElementById('profile-picture').src = '';
     userInfo.style.display = 'none';
     loginBtn.style.display = 'block';
-    logoutBtn.style.display = 'none';
+    logoutBtn.style.display =  'none'; 
     if (helperText) {
       helperText.style.display = 'block';
       helperText.style.opacity = '1';
@@ -145,7 +145,7 @@ function fetchUserInfo() {
       document.getElementById('user-name').textContent = response.name || 'N/A';
       document.getElementById('user-email').textContent = response.email || 'Email not available';
       if (response.picture && response.picture.data && response.picture.data.url) {
-        document.getElementById('profile-picture').src = response.picture.data.url;
+        document.getElementById('profile-picture').src =  response.picture.data.url;
       }
 
       userInfo.style.display = 'block';
@@ -161,5 +161,6 @@ function fetchUserInfo() {
     console.error('Error in fetchUserInfo:', error);
   }
 }
+
 
 
